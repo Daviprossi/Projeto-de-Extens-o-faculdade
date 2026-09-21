@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f0f4f8; /* Fundo levemente azulado e moderno */
+    background-color: #f0f4f8;
     color: #333;
     display: flex;
     justify-content: center;
@@ -44,7 +44,6 @@ header p {
     transition: transform 0.3s ease;
 }
 
-/* Animação interativa ao passar o mouse no card */
 .card:hover {
     transform: translateY(-5px); 
 }
@@ -95,7 +94,7 @@ button:hover {
 }
 
 button:active {
-    transform: scale(0.98); /* Dá um feedback tátil de "clique" */
+    transform: scale(0.98);
 }
 
 .resultado-container {
@@ -119,7 +118,6 @@ button:active {
     border: 1px solid #feb2b2;
 }
 
-/* CLASSES DE ANIMAÇÃO */
 .fade-in {
     animation: fadeIn 0.8s ease-in-out;
 }

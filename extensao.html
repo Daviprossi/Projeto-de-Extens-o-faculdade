@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Aluno - Ondina de Paula</title>
     <style>
-        /* === RESET E FUNDO LED ANIMADO === */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         
         body {
@@ -25,7 +24,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* === BOLHA INTERATIVA === */
         #cursor-glow {
             position: fixed; top: 0; left: 0; width: 600px; height: 600px;
             border-radius: 50%;
@@ -34,7 +32,6 @@
             z-index: 0; filter: blur(60px); transition: width 0.3s, height 0.3s;
         }
 
-        /* === TELA DE ABERTURA === */
         #intro-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: #0b0b0b; z-index: 9999;
@@ -48,7 +45,6 @@
         .fade-in-up { opacity: 1; transform: translateY(0) scale(1); }
         .fade-out { opacity: 0; transform: translateY(-20px); }
 
-        /* === O MASCOTE === */
         .wrapper { position: relative; margin-top: 100px; z-index: 10; }
         #mascote-container {
             position: absolute; top: -145px; left: 50%;
@@ -64,7 +60,6 @@
         }
         #boca, #sobr-esq, #sobr-dir { transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
 
-        /* === O CARTÃO === */
         .card {
             position: relative; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
             padding: 40px; border-radius: 24px; width: 100%; min-width: 400px;
@@ -76,7 +71,6 @@
         .secao.ativa { display: block; }
         @keyframes popIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-        /* === FORMULÁRIOS === */
         h2 { color: #1a365d; text-align: center; margin-bottom: 10px; font-size: 1.8rem; }
         p.subtexto { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
         .form-group { margin-bottom: 15px; }
@@ -87,7 +81,6 @@
         }
         input:focus { border-color: #9d4edd; background: #fff; }
 
-        /* === CUSTOM DROPDOWNS (COM EFEITO MAGNÉTICO) === */
         .custom-dropdown { position: relative; width: 100%; font-size: 16px; font-weight: 600; user-select: none; cursor: pointer; }
         .dropdown-selecionado {
             padding: 14px; border: 3px solid #e2e8f0; border-radius: 12px;
@@ -102,28 +95,26 @@
             position: absolute; top: 110%; left: 0; right: 0; background: #ffffff;
             border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;
             z-index: 99; opacity: 1; transform: translateY(0); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            padding: 5px; /* Espaço para o indicador magnético não colar nas bordas */
+            padding: 5px;
         }
         .dropdown-opcoes.oculto { opacity: 0; transform: translateY(-10px); pointer-events: none; }
         
         .opcao { 
             padding: 12px 16px; color: #4a5568; transition: color 0.2s; 
-            position: relative; z-index: 2; /* Fica acima da bolha magnética */
+            position: relative; z-index: 2;
         }
         .opcao:hover { color: #7b2cbf; }
 
-        /* A Bolha Magnética do Menu (Seu efeito adaptado) */
         .hover-indicator {
             position: absolute;
             background-color: #f3e8ff;
             border-radius: 8px;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Mesma curva suave do seu site */
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             opacity: 0;
             pointer-events: none;
             z-index: 1;
         }
 
-        /* Botão */
         button {
             width: 100%; padding: 16px; background: #9d4edd; color: white; border: none;
             border-radius: 12px; font-weight: 800; font-size: 18px; cursor: pointer;
@@ -236,7 +227,6 @@
     </div>
 
     <script>
-        // === 1. LUZ DINÂMICA ===
         const cursorGlow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
             cursorGlow.style.left = `${e.clientX}px`;
@@ -245,7 +235,6 @@
             cursorGlow.style.background = `radial-gradient(circle, hsl(${hue}, 80%, 60%, 0.3) 0%, transparent 60%)`;
         });
 
-        // === 2. INTRODUÇÃO ===
         window.onload = () => {
             const intro1 = document.getElementById('intro-1');
             const intro2 = document.getElementById('intro-2');
@@ -263,7 +252,6 @@
             }, 3500);
         };
 
-        // === 3. OLHOS DO MASCOTE ===
         const pupilaEsq = document.getElementById('pupila-esq');
         const pupilaDir = document.getElementById('pupila-dir');
         document.addEventListener('mousemove', (e) => {
@@ -276,7 +264,6 @@
             pupilaDir.style.transform = `translate(${Math.cos(anguloDir) * raioMaximo}px, ${Math.sin(anguloDir) * raioMaximo}px)`;
         });
 
-        // === 4. LOGIN ===
         function fazerLogin() {
             event.target.innerHTML = "Abrindo Armário...";
             setTimeout(() => {
@@ -285,11 +272,10 @@
             }, 600);
         }
 
-        // === 5. ESTOQUE E EXPRESSÕES ===
         const estoque = { 
             normal: { P: 10, M: 5, G: 0, GG: 2 }, 
             fisica: { P: 0, M: 12, G: 8, GG: 0 },
-            casaco: { P: 3, M: 0, G: 5, GG: 1 } // Adicionado o estoque de casacos!
+            casaco: { P: 3, M: 0, G: 5, GG: 1 }
         };
 
         function verificarFarda() {
@@ -320,7 +306,6 @@
             }
         }
 
-        // MENU MAGNETICO 
         function configurarDropdown(idDropdown, idSelectReal) {
             const dropdown = document.getElementById(idDropdown);
             const selecionado = dropdown.querySelector('.dropdown-selecionado');
@@ -328,7 +313,6 @@
             const selectReal = document.getElementById(idSelectReal);
             const itensOpcao = dropdown.querySelectorAll('.opcao');
 
-            // Cria a "bolha magnética" dinamicamente
             const indicator = document.createElement('div');
             indicator.classList.add('hover-indicator');
             opcoesContainer.appendChild(indicator);
@@ -342,7 +326,6 @@
             });
 
             itensOpcao.forEach(item => {
-                // A LÓGICA MAGNÉTICA DA IMOBILIÁRIA ADAPTADA
                 item.addEventListener('mouseenter', () => {
                     const rect = item.getBoundingClientRect();
                     const parentRect = opcoesContainer.getBoundingClientRect();
@@ -362,7 +345,6 @@
                 });
             });
 
-            // Esconde a bolha magnética quando o mouse sai do menu
             opcoesContainer.addEventListener('mouseleave', () => {
                 indicator.style.opacity = '0';
             });
